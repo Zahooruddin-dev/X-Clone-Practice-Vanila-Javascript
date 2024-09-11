@@ -8,19 +8,13 @@ mBtn.addEventListener('click', () => {
 });
 function getFeedHtml() {
 	let feedHtml = '';
-    let profilePic
-    let tweetHandle 
-    let text 
-    let replies
-    let likes 
-    let retweets 
 	tweetsData.forEach((tweet) => {
-		 profilePic = tweet.profilePic;
-		 tweetHandle = tweet.handle;
-		 text = tweet.tweetText;
-		 replies = tweet.replies;
-		 likes = tweet.likes;
-		 retweets = tweet.retweets;
+		const profilePic = tweet.profilePic;
+		const tweetHandle = tweet.handle;
+		const text = tweet.tweetText;
+		const replies = tweet.replies;
+		const likes = tweet.likes;
+		const retweets = tweet.retweets;
 		feedHtml += `<div class="tweet">
         <div class="tweet-inner">
             <img src="${profilePic}" class="profile-pic">
@@ -29,17 +23,17 @@ function getFeedHtml() {
                 <p class="tweet-text">${text}</p>
                 <div class="tweet-details">
                     <span class="tweet-detail">
-                    <i class='fa-regular fa-comment-dots'/>
-                    ${replies}
+                    <i class="fa-regular fa-comment-dots"></i>
+                    ${replies.length}
                     </span>
+
                     <span class="tweet-detail">
-                    <i class='fa-solid fa-heart'/>
+                    <i class="fa-solid fa-heart"></i>
 
                     ${likes}
                     </span>
                     <span class="tweet-detail">
-                    <i class='fa-regular fa-retweet'/>
-
+   <i class="fa-solid fa-retweet"></i>
                      ${retweets}
                     </span>
                 </div>   
@@ -48,6 +42,8 @@ function getFeedHtml() {
     </div>
     `;
 	});
+    console.log(feedHtml);
+    
 	return feedHtml;
 }
 
