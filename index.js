@@ -8,6 +8,12 @@ mBtn.addEventListener('click', () => {
 });
 function getFeedHtml() {
 	let feedHtml = '';
+    /*
+Challenge:
+1. Add data attributes to each of the  <i> tags. You can call
+   them 'reply', 'like', and 'retweet’.
+2. Each data attribute should hold the tweet's uuid.
+*/
 	tweetsData.forEach((tweet) => {
 		const profilePic = tweet.profilePic;
 		const tweetHandle = tweet.handle;
@@ -15,6 +21,7 @@ function getFeedHtml() {
 		const replies = tweet.replies;
 		const likes = tweet.likes;
 		const retweets = tweet.retweets;
+        const id = tweet.uuid
 		feedHtml += `<div class="tweet">
         <div class="tweet-inner">
             <img src="${profilePic}" class="profile-pic">
@@ -23,17 +30,17 @@ function getFeedHtml() {
                 <p class="tweet-text">${text}</p>
                 <div class="tweet-details">
                     <span class="tweet-detail">
-                    <i class="fa-regular fa-comment-dots"></i>
+                    <i class="fa-regular fa-comment-dots" data-reply=${id}></i>
                     ${replies.length}
                     </span>
 
                     <span class="tweet-detail">
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart"data-like=${id}></i>
 
                     ${likes}
                     </span>
                     <span class="tweet-detail">
-   <i class="fa-solid fa-retweet"></i>
+                    <i class="fa-solid fa-retweet"data-=${id}></i>
                      ${retweets}
                     </span>
                 </div>   
@@ -42,8 +49,8 @@ function getFeedHtml() {
     </div>
     `;
 	});
-    console.log(feedHtml);
-    
+	console.log(feedHtml);
+
 	return feedHtml;
 }
 
