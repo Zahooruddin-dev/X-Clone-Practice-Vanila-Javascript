@@ -7,19 +7,23 @@ mBtn.addEventListener('click', () => {
 	console.log(contents);
 });
 document.addEventListener('click',(e)=>{
-    console.log(e.target.dataset.like);
-    
+    if(e.target.dataset.like){
+        handleLikeClick(e.target.dataset.like)
+    }
+ /*
+Challenge:
+1. If a like icon has been clicked, call handleLikeClick
+   passing in the uuid that is stored in the like icon's 
+   data attribute. 
+*/
+function handleLikeClick(tweetId){
+    console.log(tweetId);
     /*
 Challenge:
-1. When a like icon is clicked, this function 
-   should log out the contents of the 'data-like' 
-   data-attribute.
-
-⚠️ Clicking on the page but not on the like icon
-   will log out 'undefined'. That is absolutely fine.
+2. handleLikeClick should take in a parameter. 
+   You can call this parameter 'tweetId'. For 
+   now just log out tweetId.
 */
-function handleLikeClick(e){
-    
 }
 })
 function getFeedHtml() {
