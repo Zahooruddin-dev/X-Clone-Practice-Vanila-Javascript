@@ -39,12 +39,18 @@ function getFeedHtml(){
     </div>
     `
     });
-console.log(feedHtml);
-
+return feedHtml
 
 }
 
-getFeedHtml()
 function render(){
-    
+  /*   Challenge:
+1. Take control of the ‘feed’ div.
+2. Render the HTML returned by the getFeedHtml 
+   function to the 'feed' div. 
+   See if you can do this with just one line of code!
+*/
+    feed.innerHTML=getFeedHtml()
+
 }
+render()
