@@ -27,7 +27,6 @@ function handleLikeClick(tweetId) {
 }
 function handleRetweetClick(tweetId) {
 	const targetTweetObj = tweetsData.filter((tweet) => {
-        targetTweetObj.retweets++
 		return tweet.uuid === tweetId;
 	})[0];
 	if (!targetTweetObj.isRetweeted) {
