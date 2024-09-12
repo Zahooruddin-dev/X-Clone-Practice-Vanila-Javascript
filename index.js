@@ -48,6 +48,16 @@ function getFeedHtml() {
         let retweetIconClass = ''
         likeIconClass= tweet.isLiked && 'Liked'
         retweetIconClass = tweet.isRetweeted && 'retweeted'
+     if (tweet.replies.length>0) {
+        console.log(tweet.uuid);
+        
+     }
+        /*
+Challenge:
+1. Use an if statement to check if a tweet has replies.
+2. If it does, log out the uuid for that tweet.
+*/
+        
 		const profilePic = tweet.profilePic;
 		const tweetHandle = tweet.handle;
 		const text = tweet.tweetText;
