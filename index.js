@@ -9,15 +9,20 @@ document.addEventListener('click', (e) => {
 	if (e.target.dataset.like) {
 		handleLikeClick(e.target.dataset.like);
 	}
-	if (e.target.dataset.retweet) {
+    else	if (e.target.dataset.retweet) {
 		handleRetweetClick(e.target.dataset.retweet);
 	}
-    if(e.target.dataset.reply){
+   else if(e.target.dataset.reply){
         handleReplyClick(e.target.dataset.reply)
     }
 });
-function handleReplyClick(tweetId){
-
+function handleReplyClick(replyId){
+    const replyElement = document.getElementById(`replies-${replyId}`);
+    if (replyElement) {
+      replyElement.classList.toggle('hidden');
+    } else {
+      console.error(`Element with ID "replies-${replyId}" not found.`);
+    }
 }
 function handleLikeClick(tweetId) {
 	const targetTweetObj = tweetsData.filter((tweet) => {
@@ -99,7 +104,7 @@ function getFeedHtml() {
                 </div>   
             </div>            
         </div>
-           <div id="replies-${id}}">
+           <div id="replies-${id}">
        ${repliesHtml}
     </div> 
     </div>
