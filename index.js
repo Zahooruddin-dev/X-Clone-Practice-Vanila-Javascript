@@ -52,6 +52,28 @@ function handleRetweetClick(tweetId) {
 }
 function handleTweetBtnClick ()
 {
+/*
+Challenge:
+2. When the Tweet button is clicked, log out an object
+   for a new tweet. Make sure you include the text of 
+   the tweet (how can you get that?) and a unique 
+   identifier using uuidjs.
+   
+   The handle @Scrimba (or whatever you prefer) and 
+   the profile pic scrimbalogo.png can be hard-coded.
+*/ 
+console.log({
+    handle: `@MuhammadZahooruddin `,
+    profilePic: `images/logo.jpg`,
+    likes: 0,
+    retweets: 0,
+    tweetText: `${mInput.value}`,
+    replies: [],
+    isLiked: false,
+    isRetweeted: false,
+    uuid: uuidv4(),
+});
+
 
 }
 function getFeedHtml() {
