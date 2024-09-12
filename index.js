@@ -15,11 +15,10 @@ document.addEventListener('click', (e) => {
 		})[0];
 		if (!targetTweetObj.isLiked) {
 			targetTweetObj.likes++;
-			targetTweetObj.isLiked = true;
 		} else {
-			targetTweetObj.isLiked = false;
 			targetTweetObj.likes--;
 		}
+        targetTweetObj.isLiked= !targetTweetObj.isLiked
 
 		console.log(targetTweetObj);
 		render();
