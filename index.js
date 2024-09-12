@@ -1,15 +1,11 @@
 import { tweetsData } from './data.js';
 import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js';
-
 const feed = document.getElementById('feed');
-
-// Load tweets from localStorage on page load
-const savedTweets = JSON.parse(localStorage.getItem('tweetsData'));
+const savedTweets = JSON.parse(localStorage.getItem('tweetsData')); // Load tweets from localStorage on page load
 if (savedTweets) {
     tweetsData.length = 0; // Clear the original tweetsData
     tweetsData.push(...savedTweets); // Load saved tweets
 }
-
 document.addEventListener('click', (e) => {
     if (e.target.dataset.like) {
         handleLikeClick(e.target.dataset.like);
@@ -27,7 +23,6 @@ document.addEventListener('click', (e) => {
         handleTweetBtnClick();
     }
 });
-
 function handleReplyClick(replyId) {
     const replyElement = document.getElementById(`replies-${replyId}`);
     if (replyElement) {
@@ -36,12 +31,10 @@ function handleReplyClick(replyId) {
         console.error(`Element with ID "replies-${replyId}" not found.`);
     }
 }
-
 function handleAddReplyClick(tweetId) {
     const replyInput = document.getElementById(`reply-input-${tweetId}`);
     const replyText = replyInput.value.trim();
     if (!replyText) return;
-
     const targetTweetObj = tweetsData.find((tweet) => tweet.uuid === tweetId);
     const newReply = {
         handle: '@Mizuka', 
@@ -49,28 +42,22 @@ function handleAddReplyClick(tweetId) {
         tweetText: replyText,
         uuid: uuidv4()
     };
-
     targetTweetObj.replies.push(newReply);
     replyInput.value = ''; // Clear the input field
-
     saveTweetsToLocalStorage(); // Save updated data to localStorage
     render();
 }
-
 function handleLikeClick(tweetId) {
     const targetTweetObj = tweetsData.find((tweet) => tweet.uuid === tweetId);
     targetTweetObj.isLiked = !targetTweetObj.isLiked;
     targetTweetObj.likes += targetTweetObj.isLiked ? 1 : -1;
-
     saveTweetsToLocalStorage(); // Save updated data to localStorage
     render();
 }
-
 function handleRetweetClick(tweetId) {
     const targetTweetObj = tweetsData.find((tweet) => tweet.uuid === tweetId);
     targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted;
     targetTweetObj.retweets += targetTweetObj.isRetweeted ? 1 : -1;
-
     saveTweetsToLocalStorage(); // Save updated data to localStorage
     render();
 }
