@@ -44,8 +44,8 @@ function handleAddReplyClick(tweetId) {
 
     const targetTweetObj = tweetsData.find((tweet) => tweet.uuid === tweetId);
     const newReply = {
-        handle: '@YourHandle', // Change this to the current user handle
-        profilePic: 'images/profile-pic.webp',
+        handle: '@Mizuka', 
+        profilePic: 'images/gg.webp',
         tweetText: replyText,
         uuid: uuidv4()
     };
@@ -116,9 +116,9 @@ function getFeedHtml() {
             tweet.replies.forEach((reply) => {
                 repliesHtml += `<div class="tweet-reply">
                     <div class="tweet-inner">
-                        <img src="images/gg.webp" class="profile-pic">
+                        <img src="${reply.profilePic}" class="profile-pic">
                         <div>
-                            <p class="handle">@Mizuka</p>
+                            <p class="handle">${reply.handle}</p>
                             <p class="tweet-text">${reply.tweetText}</p>
                         </div>
                     </div>
