@@ -7,23 +7,47 @@ mBtn.addEventListener('click', () => {
 });
 document.addEventListener('click', (e) => {
 	if (e.target.dataset.like) {
-		handleLikeClick(e.target.dataset.like);
+		handleLikeClick(e.target.dataset.like)
 	}
-	function handleLikeClick(tweetId) {
-		const targetTweetObj = tweetsData.filter((tweet) => {
-			return tweet.uuid === tweetId;
-		})[0];
-		if (!targetTweetObj.isLiked) {
-			targetTweetObj.likes++;
-		} else {
-			targetTweetObj.likes--;
-		}
-        targetTweetObj.isLiked= !targetTweetObj.isLiked
+    if(e.target.dataset.retweet){
+    handleRetweetClick(e.target.dataset.retweet);}
+    
+/*
+Challenge:
+1. Make this eventListener call "handleRetweetClick" 
+   when the retweet icon is clicked, passing in the
+   uuid from that tweet.  
+*/
 
-		console.log(targetTweetObj);
-		render();
-	}
 });
+function handleLikeClick(tweetId) {
+    const targetTweetObj = tweetsData.filter((tweet) => {
+        return tweet.uuid === tweetId;
+    })[0];
+    if (!targetTweetObj.isLiked) {
+        targetTweetObj.likes++;
+    } else {
+        targetTweetObj.likes--;
+    }
+    targetTweetObj.isLiked = !targetTweetObj.isLiked;
+    render();
+}
+function handleRetweetClick(tweetId){
+	const targetTweetObj = tweetsData.filter((tweet) => {
+        return tweet.uuid === tweetId;
+    })[0];
+    if(!targetTweetObj.isRetweeted){
+        targetTweetObj.retweets++
+    }
+    else{
+        targetTweetObj.retweets--
+    }
+    targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted 
+    console.log(targetTweetObj);
+    render();
+
+
+}
 function getFeedHtml() {
 	let feedHtml = '';
 	tweetsData.forEach((tweet) => {
@@ -52,7 +76,7 @@ function getFeedHtml() {
                     ${likes}
                     </span>
                     <span class="tweet-detail">
-                    <i class="fa-solid fa-retweet"data-=${id}></i>
+                    <i class="fa-solid fa-retweet"data-retweet=${id}></i>
                      ${retweets}
                     </span>
                 </div>   
