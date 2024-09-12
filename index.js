@@ -12,13 +12,6 @@ document.addEventListener('click', (e) => {
     if(e.target.dataset.retweet){
     handleRetweetClick(e.target.dataset.retweet);}
     
-/*
-Challenge:
-1. Make this eventListener call "handleRetweetClick" 
-   when the retweet icon is clicked, passing in the
-   uuid from that tweet.  
-*/
-
 });
 function handleLikeClick(tweetId) {
     const targetTweetObj = tweetsData.filter((tweet) => {
