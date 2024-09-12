@@ -5,31 +5,26 @@ const feed = document.getElementById('feed');
 mBtn.addEventListener('click', () => {
 	const contents = mInput.value;
 });
-document.addEventListener('click',(e)=>{
-    if(e.target.dataset.like){
-        handleLikeClick(e.target.dataset.like)
-    }
-function handleLikeClick(tweetId){
-    const targetTweetObj = tweetsData.filter((tweet)=>{
-        return tweet.uuid=== tweetId
-    })[0]
-    /*
-Challenge:
-1. When a tweet is liked, it's 'isLiked' property
-   should be set to true.
-2. When a tweet is unliked, it's 'isLiked' property
-   should be set to false and its 'likes' count
-   should be decremented.
-*/   
-tar
-    
-    targetTweetObj.likes++
-    console.log(targetTweetObj);
-    render()
-    
- 
-}
-})
+document.addEventListener('click', (e) => {
+	if (e.target.dataset.like) {
+		handleLikeClick(e.target.dataset.like);
+	}
+	function handleLikeClick(tweetId) {
+		const targetTweetObj = tweetsData.filter((tweet) => {
+			return tweet.uuid === tweetId;
+		})[0];
+		if (!targetTweetObj.isLiked) {
+			targetTweetObj.likes++;
+			targetTweetObj.isLiked = true;
+		} else {
+			targetTweetObj.isLiked = false;
+			targetTweetObj.likes--;
+		}
+
+		console.log(targetTweetObj);
+		render();
+	}
+});
 function getFeedHtml() {
 	let feedHtml = '';
 	tweetsData.forEach((tweet) => {
@@ -39,7 +34,7 @@ function getFeedHtml() {
 		const replies = tweet.replies;
 		const likes = tweet.likes;
 		const retweets = tweet.retweets;
-        const id = tweet.uuid
+		const id = tweet.uuid;
 		feedHtml += `<div class="tweet">
         <div class="tweet-inner">
             <img src="${profilePic}" class="profile-pic">
