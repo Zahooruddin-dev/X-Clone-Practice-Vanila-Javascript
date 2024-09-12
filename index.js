@@ -1,7 +1,6 @@
 import { tweetsData } from './data.js';
 import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js';
-console.log(uuidv4()); 
-const mInput = document.getElementById('tweet-input');
+const mInput = document.getElementById('tweet-input'); 
 const feed = document.getElementById('feed');
 
 document.addEventListener('click', (e) => {
@@ -50,30 +49,26 @@ function handleRetweetClick(tweetId) {
 	targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted;
 	render();
 }
-function handleTweetBtnClick ()
-{
-/*
-Challenge:
-2. When the Tweet button is clicked, log out an object
-   for a new tweet. Make sure you include the text of 
-   the tweet (how can you get that?) and a unique 
-   identifier using uuidjs.
-   
-   The handle @Scrimba (or whatever you prefer) and 
-   the profile pic scrimbalogo.png can be hard-coded.
-*/ 
-console.log({
+function handleTweetBtnClick (){
+    if(!mInput.value.trim()){
+        console.log('empty');
+        return
+    }
+    const newTweet={
     handle: `@MuhammadZahooruddin `,
-    profilePic: `images/logo.jpg`,
+    profilePic: `images/gg.webp`,
     likes: 0,
     retweets: 0,
     tweetText: `${mInput.value}`,
     replies: [],
     isLiked: false,
     isRetweeted: false,
-    uuid: uuidv4(),
-});
+    uuid: uuidv4()
+};
+tweetsData.unshift(newTweet);
 
+mInput.value =''
+render()
 
 }
 function getFeedHtml() {
