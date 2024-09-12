@@ -4,27 +4,30 @@ const mBtn = document.getElementById('tweet-btn');
 const feed = document.getElementById('feed');
 mBtn.addEventListener('click', () => {
 	const contents = mInput.value;
-	console.log(contents);
 });
 document.addEventListener('click',(e)=>{
     if(e.target.dataset.like){
         handleLikeClick(e.target.dataset.like)
     }
 function handleLikeClick(tweetId){
-    console.log(tweetId);
-    tweetId.forEach((objects)=>)
+    const targetTweetObj = tweetsData.filter((tweet)=>{
+        return tweet.uuid=== tweetId
+    })[0]
     /*
 Challenge:
-1. Iterate over tweetsData and use the uuid 
-   saved in tweetId to identify the liked
-   tweet's object. Save that object to a 
-   new const called 'targetTweetObj'.
-⚠️ targetTweetObj should hold an object, NOT
-   an array.
-2. Increment targetTweetObj's 'likes' count 
-   by 1.
-3. Log out targetTweetObj
-*/
+1. When a tweet is liked, it's 'isLiked' property
+   should be set to true.
+2. When a tweet is unliked, it's 'isLiked' property
+   should be set to false and its 'likes' count
+   should be decremented.
+*/   
+tar
+    
+    targetTweetObj.likes++
+    console.log(targetTweetObj);
+    render()
+    
+ 
 }
 })
 function getFeedHtml() {
@@ -64,18 +67,10 @@ function getFeedHtml() {
     </div>
     `;
 	});
-	console.log(feedHtml);
-
 	return feedHtml;
 }
 
 function render() {
-	/*   Challenge:
-1. Take control of the ‘feed’ div.
-2. Render the HTML returned by the getFeedHtml 
-   function to the 'feed' div. 
-   See if you can do this with just one line of code!
-*/
 	feed.innerHTML = getFeedHtml();
 }
 render();
