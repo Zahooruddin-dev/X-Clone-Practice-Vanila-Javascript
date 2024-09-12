@@ -12,7 +12,13 @@ document.addEventListener('click', (e) => {
 	if (e.target.dataset.retweet) {
 		handleRetweetClick(e.target.dataset.retweet);
 	}
+    if(e.target.dataset.reply){
+        handleReplyClick(e.target.dataset.reply)
+    }
 });
+function handleReplyClick(tweetId){
+
+}
 function handleLikeClick(tweetId) {
 	const targetTweetObj = tweetsData.filter((tweet) => {
 		return tweet.uuid === tweetId;
