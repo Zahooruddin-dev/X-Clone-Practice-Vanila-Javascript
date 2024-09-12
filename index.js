@@ -1,8 +1,6 @@
 import { tweetsData } from './data.js';
 import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js';
-const mInput = document.getElementById('tweet-input'); 
 const feed = document.getElementById('feed');
-
 document.addEventListener('click', (e) => {
 	if (e.target.dataset.like) {
 		handleLikeClick(e.target.dataset.like);
@@ -50,6 +48,7 @@ function handleRetweetClick(tweetId) {
 	render();
 }
 function handleTweetBtnClick (){
+    const mInput = document.getElementById('tweet-input'); 
     if(!mInput.value.trim()){
         console.log('empty');
         return
