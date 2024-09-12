@@ -1,10 +1,9 @@
 import { tweetsData } from './data.js';
+import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js';
+console.log(uuidv4()); 
 const mInput = document.getElementById('tweet-input');
-const mBtn = document.getElementById('tweet-btn');
 const feed = document.getElementById('feed');
-mBtn.addEventListener('click', () => {
-	const contents = mInput.value;
-});
+
 document.addEventListener('click', (e) => {
 	if (e.target.dataset.like) {
 		handleLikeClick(e.target.dataset.like);
@@ -14,6 +13,9 @@ document.addEventListener('click', (e) => {
 	}
    else if(e.target.dataset.reply){
         handleReplyClick(e.target.dataset.reply)
+    }
+    else  if(e.target.id === 'tweet-btn'){
+        handleTweetBtnClick()
     }
 });
 function handleReplyClick(replyId){
@@ -46,8 +48,11 @@ function handleRetweetClick(tweetId) {
 		targetTweetObj.retweets--;
 	}
 	targetTweetObj.isRetweeted = !targetTweetObj.isRetweeted;
-	console.log(targetTweetObj);
 	render();
+}
+function handleTweetBtnClick ()
+{
+
 }
 function getFeedHtml() {
 	let feedHtml = '';
@@ -56,9 +61,7 @@ function getFeedHtml() {
 		let retweetIconClass = '';
 		likeIconClass = tweet.isLiked && 'Liked';
 		retweetIconClass = tweet.isRetweeted && 'retweeted';
-
 		let repliesHtml = '';
-
 		if (tweet.replies.length > 0) {
 			tweet.replies.forEach((reply) => {
 				repliesHtml += `<div class="tweet-reply">
@@ -72,7 +75,6 @@ function getFeedHtml() {
         </div>`;
 			});
 		} 
-
 		const profilePic = tweet.profilePic;
 		const tweetHandle = tweet.handle;
 		const text = tweet.tweetText;
@@ -91,10 +93,8 @@ function getFeedHtml() {
                     <i class="fa-regular fa-comment-dots" data-reply=${id}></i>
                     ${replies.length}
                     </span>
-
                     <span class="tweet-detail">
                     <i class="fa-solid fa-heart ${likeIconClass}"data-like=${id}></i>
-
                     ${likes}
                     </span>
                     <span class="tweet-detail">
